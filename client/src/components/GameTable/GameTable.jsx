@@ -12,8 +12,8 @@ const GameTable = () =>{
   return (
       <div className="gametable">The Table
         <div className="players">
-          <PlayerHand />
-          <PlayerHand />
+          <PlayerHand player={players[0]}/>
+          <PlayerHand player={players[1]}/>
         </div>
         <div className="status">
           {winner ? (`Game Over. ${winner} wins.`) : ('')}

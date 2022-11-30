@@ -1,10 +1,16 @@
 import React from "react";
+import "../../css/Cards.css"
 
-const Cards = () =>{
+const Cards = ({value, shown, style}) =>{
+  if(shown){
 
   return (
-    <div className="gametable">Cards</div>
+    <div>
+      Cards
+    </div>
   )
+}
+return <div className="card facedown" style={style}/>;
 }
 
 export default Cards
