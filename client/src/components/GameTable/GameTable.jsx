@@ -1,8 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import PlayerHand from "./PlayerHand";
 import "../../css/gametable.css"
 
 const GameTable = () =>{
+  const round = useSelector(state => state.gameBoard.rounds);
+  const wars = useSelector(state => state.gameBoard.wars);
+  const players = useSelector(state => state.gameBoard.players);
+  const winner = useSelector(state => state.gameBoard.winner);
 
   return (
       <div className="gametable">The Table
@@ -11,9 +16,13 @@ const GameTable = () =>{
           <PlayerHand />
         </div>
         <div className="status">
-            Round Status
-            War Status
-            Hand Status
+          {winner ? (`Game Over. ${winner} wins.`) : ('')}
+        { round } rounds ({wars} wars)
+            {players ?(
+              players
+              .map((player, index) => (
+              <p key={index}>{`Player: ${player.name} |  Deck size: ${player.cards.length}`}</p>))) : ('')
+            }
           </div>
       </div>
   )
