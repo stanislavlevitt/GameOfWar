@@ -1,0 +1,12 @@
+.gametable {
+  padding: 1em;
+}
+
+.players {
+  display: flex;
+  height: 400px;
+}
+
+.status {
+  text-align: center;
+}
