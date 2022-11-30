@@ -11,3 +11,27 @@
   background: url('../assets/cardBG.jpeg');
   background-size: cover;
 }
+
+.card.H, .card.D {
+  color: red;
+}
+
+.card.S, .card.C {
+  color: black;
+}
+
+.card .wrapper {
+  position: relative;
+}
+
+.card .suit {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.card .text {
+  font-size: 6rem;
+  line-height: 200%;
+  font-weight: bolder;
+}

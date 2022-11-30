@@ -1,7 +1,7 @@
 import React from "react"
 import NewGame from "./Buttons/NewGame"
 import AutoPlay from "./Buttons/AutoPlay"
-import Deal from "./Buttons/Deal"
+import Draw from "./Buttons/Draw"
 import "../css/navbar.css";
 
 const Navbar = () =>{
@@ -9,7 +9,7 @@ const Navbar = () =>{
     <nav id="navbar" className="navbar nav-wrapper red darken-4">
       <NewGame />
       <AutoPlay />
-      <Deal />
+      <Draw />
     </nav>
   )
 }

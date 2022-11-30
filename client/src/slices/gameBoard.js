@@ -19,10 +19,22 @@ const gameSlice = createSlice({
         players: action.payload.players,
       }
     },
+    insertWonCards: (state, action) => {
+      return {
+        ...state,
+        players: action.payload.players,
+      }
+    },
+    updatePlayerHands: (state, action) => {
+      return {
+        ...state,
+        players: action.payload,
+      }
+    },
   },
 });
 
-export const { createNewGame } = gameSlice.actions
+export const { createNewGame, insertWonCards, updatePlayerHands } = gameSlice.actions
 
 const { reducer } = gameSlice;
 export default reducer;
