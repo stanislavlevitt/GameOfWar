@@ -1,26 +1,31 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux";
-import {createNewGame, stopAutoPlay} from "../../slices/gameBoard";
+import { useDispatch } from "react-redux";
+import {createNewGame} from "../../slices/gameBoard";
+import { buildDeck, shuffleDeck, deal} from '../../utils/deckBuilder';
 import "../../css/navbar.css"
 
 const NewGame = () =>{
-  const count = useSelector(state => state.gameBoard.gameCount);
-  const name = useSelector(state => state.gameBoard.autoName);
   const dispatch = useDispatch();
 
   const startGame = () => {
-    let GameState = {}
-    console.log('clicked startGame')
-    dispatch(createNewGame())
-    dispatch(stopAutoPlay('stas'))
 
+    const cards = shuffleDeck(buildDeck());
+    const hands = deal(cards, 2);
+    const newState = {
+      rounds: 0,
+      wars: 0,
+      winner: null,
+      players: [
+        {name: 'First Player', cards:hands[0], hand: []},
+        {name: 'Second Player', cards:hands[1], hand: []}
+      ]
+    }
+    dispatch(createNewGame(newState))
   };
 
   return (
      <button className="controls-btn" onClick={startGame}>
       New Game
-      {count}
-      {name}
       </button>
   )
 }
