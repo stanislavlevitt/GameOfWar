@@ -4,17 +4,7 @@
   justify-content: center;
 }
 
-.autoplay {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 1em;
-}
-
 .controls-btn {
   background-color: #22a999;
-}
-
-.rate-label {
-  margin: auto;
-  padding: 2px;
+  margin: 0 1em;
 }
