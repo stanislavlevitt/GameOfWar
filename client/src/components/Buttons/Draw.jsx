@@ -30,7 +30,7 @@ const Draw = () =>{
     isWar = !hasWinner;
       if(hasWinner){
         const cardsWon = gatherCardsWon(playerHands, hasWinner)[0];
-        const totalCards = [...hasWinner.cards.slice(1,-1), hasWinner.cards[0], ...cardsWon]
+        const totalCards = [...hasWinner.cards.slice(1), hasWinner.cards[0], ...cardsWon]
         const winnerInfo = updateWinnerInfo(totalCards, playerHands, hasWinner)
         const loserInfo = getLoserInfo(cardsWon, playerHands, hasWinner)
         playerObject = makePlayerObject(winnerInfo, loserInfo)
