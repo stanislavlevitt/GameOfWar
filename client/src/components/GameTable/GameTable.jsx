@@ -9,6 +9,9 @@ const GameTable = () =>{
   const players = useSelector(state => state.gameBoard.players);
   const winner = useSelector(state => state.gameBoard.winner);
 
+  const firstPlayer = players.filter(player =>player.name ==='First Player')[0]
+  const secondPlayer = players.filter(player =>player.name ==='Second Player')[0]
+
   return (
       <div className="gametable">The Table
         <div className="players">
@@ -18,11 +21,8 @@ const GameTable = () =>{
         <div className="status">
           {winner ? (`Game Over. ${winner} wins.`) : ('')}
         { round } rounds ({wars} wars)
-            {players ?(
-              players
-              .map((player, index) => (
-              <p key={index}>{`Player: ${player.name} |  Deck size: ${player.cards.length}`}</p>))) : ('')
-            }
+        {firstPlayer ? (<p>Player: {firstPlayer.name} |  Deck size: {firstPlayer.cards.length}</p>) : ('')}
+        {secondPlayer ? (<p>Player: {secondPlayer.name} |  Deck size: {secondPlayer.cards.length}</p>) : ('')}
           </div>
       </div>
   )
