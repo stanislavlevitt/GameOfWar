@@ -22,24 +22,46 @@ const Draw = () =>{
   }
 
   const startDraw = () => {
-    let playerHands = drawCards(players)
-    let playerObject = makePlayerObject(playerHands[0], playerHands[1])
+    const playerHands = drawCards(players, 1)
+    const  playerObject = makePlayerObject(playerHands[0], playerHands[1])
     dispatch(updatePlayerHands(playerObject))
     let isWar = false
     const hasWinner = determineWinner(playerHands);
     isWar = !hasWinner;
       if(hasWinner){
-        const cardsWon = gatherCardsWon(playerHands, hasWinner)[0];
-        const totalCards = [...hasWinner.cards.slice(1), hasWinner.cards[0], ...cardsWon]
-        const winnerInfo = updateWinnerInfo(totalCards, playerHands, hasWinner)
-        const loserInfo = getLoserInfo(cardsWon, playerHands, hasWinner)
-        playerObject = makePlayerObject(winnerInfo, loserInfo)
-        dispatch(insertWonCards(playerObject))
+        handleWinner(hasWinner, playerHands)
+      } else{
+        handleWar()
       }
       dispatch(updateStatusInfo({
         rounds: rounds + 1,
         wars: wars + (isWar ? 1 : 0)
       }))
+    }
+
+    const handleWar = () =>{
+      let inWar = true
+      let cardDraws = 3
+      let newPlayerHands = drawCards(players, cardDraws)
+      let hasWinner
+      while(inWar){
+        let playerObject = makePlayerObject(newPlayerHands[0], newPlayerHands[1])
+        dispatch(updatePlayerHands(playerObject))
+        hasWinner = determineWinner(newPlayerHands);
+        if(hasWinner) inWar = false
+        cardDraws+=2
+      }
+
+      handleWinner(hasWinner, newPlayerHands)
+    }
+
+    const handleWinner = (winner, playerHands) =>{
+      const cardsWon = gatherCardsWon(playerHands, winner)[0];
+        const totalCards = [...winner.cards.slice(1), winner.cards[0], ...cardsWon]
+        const winnerInfo = updateWinnerInfo(totalCards, playerHands, winner)
+        const loserInfo = getLoserInfo(cardsWon, playerHands, winner)
+        const playerObject = makePlayerObject(winnerInfo, loserInfo)
+        dispatch(insertWonCards(playerObject))
     }
 
 

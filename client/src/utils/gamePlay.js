@@ -1,7 +1,7 @@
-export function drawCards(players){
+export function drawCards(players, numberOfCards){
     return players.map((player)=> ({
       ...player,
-      hand: draw(player.cards, 1)
+      hand: draw(player.cards, numberOfCards)
     }))
 }
 
