@@ -13,13 +13,16 @@ const GameTable = () =>{
   const secondPlayer = players.filter(player =>player.name ==='Second Player')[0]
 
   return (
-      <div className="gametable">The Table
+      <div className="gametable">
         <div className="players">
-          <PlayerHand player={players[0]}/>
-          <PlayerHand player={players[1]}/>
+          <PlayerHand player={firstPlayer}/>
+          <PlayerHand player={secondPlayer}/>
         </div>
         <div className="status">
           {winner ? (`Game Over. ${winner} wins.`) : ('')}
+        </div>
+        <br />
+        <div className="status">
         { round } rounds ({wars} wars)
         {firstPlayer ? (<p>Player: {firstPlayer.name} |  Deck size: {firstPlayer.cards.length}</p>) : ('')}
         {secondPlayer ? (<p>Player: {secondPlayer.name} |  Deck size: {secondPlayer.cards.length}</p>) : ('')}
