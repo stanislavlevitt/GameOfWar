@@ -22,11 +22,14 @@ const PlayerHand = ({player}) =>{
   return (
     <div className="player">
       <div className="cards">
-        The Cards
         {deck}
       </div>
+      {player ? (
+        <div>
+          <p>{player.name}'s Deck</p>
+        </div>
+      ) : ('')}
       <div className="current-hand">
-        The Hand
         {hand}
       </div>
     </div>

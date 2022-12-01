@@ -67,3 +67,7 @@ export function updateWinnerInfo(totalCards, players, winner) {
     hand: info.hand
   }
 }
+
+export function isGameOver(player) {
+  return player.cards.length === 0
+}

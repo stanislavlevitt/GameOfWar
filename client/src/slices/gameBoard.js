@@ -38,10 +38,17 @@ const gameSlice = createSlice({
         wars: action.payload.wars
       }
     },
+    updateWinnerStatus: (state, action) => {
+      return {
+        ...state,
+        winner: action.payload.winner,
+        players: action.payload.players,
+      }
+    },
   },
 });
 
-export const { createNewGame, insertWonCards, updatePlayerHands, updateStatusInfo } = gameSlice.actions
+export const { createNewGame, insertWonCards, updatePlayerHands, updateStatusInfo, updateWinnerStatus } = gameSlice.actions
 
 const { reducer } = gameSlice;
 export default reducer;

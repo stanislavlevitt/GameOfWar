@@ -1,7 +1,8 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { determineWinner, gatherCardsWon, drawCards, getLoserInfo, updateWinnerInfo} from '../../utils/gamePlay';
-import {insertWonCards, updatePlayerHands, updateStatusInfo} from "../../slices/gameBoard";
+import { determineWinner, gatherCardsWon, drawCards, getLoserInfo, updateWinnerInfo, isGameOver} from '../../utils/gamePlay';
+import {makePlayerObject, } from '../../utils/buildPlayers';
+import {insertWonCards, updatePlayerHands, updateStatusInfo, updateWinnerStatus} from "../../slices/gameBoard";
 import "../../css/navbar.css"
 
 const Draw = () =>{
@@ -9,17 +10,7 @@ const Draw = () =>{
   const players = useSelector(state => state.gameBoard.players);
   const rounds = useSelector(state => state.gameBoard.rounds);
   const wars = useSelector(state => state.gameBoard.wars);
-
-
-
-  const makePlayerObject = (player1, player2) =>{
-    return {
-      players:[
-        {name:player1.name, cards: player1.cards, hand:player1.hand},
-        {name:player2.name, cards: player2.cards, hand:player2.hand }
-      ]
-    }
-  }
+  const winner = useSelector(state => state.gameBoard.winner);
 
   const startDraw = () => {
     const playerHands = drawCards(players, 1)
@@ -62,11 +53,18 @@ const Draw = () =>{
         const loserInfo = getLoserInfo(cardsWon, playerHands, winner)
         const playerObject = makePlayerObject(winnerInfo, loserInfo)
         dispatch(insertWonCards(playerObject))
+
+        if (isGameOver(loserInfo)) {
+          const {players} = makePlayerObject(winnerInfo, loserInfo, true)
+          dispatch(updateWinnerStatus({winner: winnerInfo.name, players}))
+        }
     }
+
+    const shouldDisable = !players.length || winner
 
 
   return (
-    <button className="controls-btn" onClick={startDraw} disabled={!players.length}>
+    <button className="controls-btn" onClick={startDraw} disabled={shouldDisable}>
       Draw
       </button>
   )
