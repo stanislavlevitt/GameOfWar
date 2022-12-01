@@ -47,9 +47,11 @@ The game ends when one player has all 52 cards, or if one player does not have e
 </strong></p>
 <br />
 <p align="center"><strong> At the bottom of the board there is a status infomation detailing:
-1) Winner of the game
-2) Current round number
-3) How many times war has been played
-4) Deck sizes of both players
+<ul>
+<li>Winner of the game</li>
+<li>Current round number</li>
+<li>How many times war has been played</li>
+<li>Deck sizes of both players</li>
+</ul>
 </strong></p>
 <br />
