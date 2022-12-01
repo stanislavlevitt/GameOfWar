@@ -4,7 +4,6 @@ import Card from './Cards';
 
 const PlayerHand = ({player}) =>{
 
-  console.log('PlayerHand', player)
   let deck = []
   let hand = []
   if(player){

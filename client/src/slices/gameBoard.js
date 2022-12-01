@@ -28,13 +28,20 @@ const gameSlice = createSlice({
     updatePlayerHands: (state, action) => {
       return {
         ...state,
-        players: action.payload,
+         players: action.payload.players,
+      }
+    },
+    updateStatusInfo: (state, action) => {
+      return {
+        ...state,
+        rounds: action.payload.rounds,
+        wars: action.payload.wars
       }
     },
   },
 });
 
-export const { createNewGame, insertWonCards, updatePlayerHands } = gameSlice.actions
+export const { createNewGame, insertWonCards, updatePlayerHands, updateStatusInfo } = gameSlice.actions
 
 const { reducer } = gameSlice;
 export default reducer;

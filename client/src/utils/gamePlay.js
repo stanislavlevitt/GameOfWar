@@ -21,8 +21,11 @@ export function determineWinner(players) {
 
 export function gatherCardsWon(players, winner) {
   return players
-    .filter(player => player !== winner)
-    .map(player => player.hand.splice(0));
+      .filter(player => player !== winner)
+      .map(player => {
+        const clone = Array.from(player.hand);
+        return clone.splice(0)
+      });
 }
 
 const draw = (cards, numberOfCards = 1) => {
@@ -33,4 +36,34 @@ const draw = (cards, numberOfCards = 1) => {
     numberOfCards--;
   }
   return drawn;
+}
+
+const last = (cards)=> {
+  return cards[cards.length-1];
+}
+
+export function getLoserInfo(cardsWon, players, winner) {
+
+  let loser =  players.filter(player => player !== winner)[0]
+  let len = cardsWon.length
+  const cards = Array.from(loser.cards);
+  while(len){
+    cards.shift()
+    len--
+  }
+  return {
+    name: loser.name,
+    cards: cards,
+    hand: loser.hand
+  }
+}
+
+export function updateWinnerInfo(totalCards, players, winner) {
+
+  let info =  players.filter(player => player === winner)[0]
+  return {
+    name: info.name,
+    cards: totalCards,
+    hand: info.hand
+  }
 }
