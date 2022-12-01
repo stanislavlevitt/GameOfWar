@@ -26,7 +26,7 @@ const PlayerHand = ({player}) =>{
       </div>
       {player ? (
         <div>
-          <p>{player.name}'s Deck</p>
+          <p>{player.name}'s Playmat</p>
         </div>
       ) : ('')}
       <div className="current-hand">
